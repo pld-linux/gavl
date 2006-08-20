@@ -4,10 +4,14 @@ Name:		gavl
 Version:	0.2.4
 Release:	0.1
 License:	GPL
-Group:		Applications
+Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
 # Source0-md5:	ba7989a9344026827b34e797b0a58d87
+Patch0:		%{name}-make.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,8 +46,14 @@ Statyczna biblioteka gavl.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
@@ -61,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS README TODO
 %attr(755,root,root) %{_libdir}/libgavl.so.*.*.*
 
 %files devel
@@ -69,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgavl.la
 %{_libdir}/gavl
 %{_includedir}/gavl
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/gavl.pc
 
 %files static
 %defattr(644,root,root,755)
