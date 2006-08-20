@@ -1,5 +1,5 @@
-#
 Summary:	GMerlin Audio Video Library
+Summary(pl):	Biblioteka audio/video GMerlin
 Name:		gavl
 Version:	0.2.4
 Release:	0.1
@@ -11,7 +11,10 @@ URL:		http://gmerlin.sourceforge.net/gavl_frame.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GMerlin Audio Video Library
+GMerlin Audio Video Library.
+
+%description -l pl
+Biblioteka audio/video GMerlin.
 
 %package devel
 Summary:	Header files for gavl library
@@ -23,7 +26,7 @@ Requires:	%{name} = %{version}-%{release}
 This is the package containing the header files for gavl library.
 
 %description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe biblioteki gavl
+Ten pakiet zawiera pliki nag³ówkowe biblioteki gavl.
 
 %package static
 Summary:	Static gavl library
@@ -35,7 +38,7 @@ Requires:	%{name}-devel = %{version}-%{release}
 Static gavl library.
 
 %description static -l pl
-Statyczna biblioteka gavl
+Statyczna biblioteka gavl.
 
 %prep
 %setup -q
@@ -58,14 +61,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_prefix}/lib/libgavl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgavl.so.*.*.*
 
 %files devel
-%{_pkgconfigdir}/*.pc
-%{_includedir}/gavl
-%{_libdir}/*.la
-%{_libdir}/*.so
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgavl.so
+%{_libdir}/libgavl.la
 %{_libdir}/gavl
+%{_includedir}/gavl
+%{_pkgconfigdir}/*.pc
 
 %files static
-%{_prefix}/lib/libgavl.a
+%defattr(644,root,root,755)
+%{_libdir}/libgavl.a
