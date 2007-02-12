@@ -1,5 +1,5 @@
 Summary:	GMerlin Audio Video Library
-Summary(pl):	Biblioteka audio/video GMerlin
+Summary(pl.UTF-8):   Biblioteka audio/video GMerlin
 Name:		gavl
 Version:	0.2.4
 Release:	0.1
@@ -17,31 +17,31 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 GMerlin Audio Video Library.
 
-%description -l pl
+%description -l pl.UTF-8
 Biblioteka audio/video GMerlin.
 
 %package devel
 Summary:	Header files for gavl library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki gavl
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki gavl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This is the package containing the header files for gavl library.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag≥Ûwkowe biblioteki gavl.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nag≈Ç√≥wkowe biblioteki gavl.
 
 %package static
 Summary:	Static gavl library
-Summary(pl):	Statyczna biblioteka gavl
+Summary(pl.UTF-8):   Statyczna biblioteka gavl
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gavl library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka gavl.
 
 %prep
