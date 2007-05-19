@@ -8,6 +8,7 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
 # Source0-md5:	ba7989a9344026827b34e797b0a58d87
 Patch0:		%{name}-make.patch
+Patch1:		%{name}-non-x86.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -47,6 +48,7 @@ Statyczna biblioteka gavl.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
