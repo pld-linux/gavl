@@ -1,17 +1,17 @@
 Summary:	GMerlin Audio Video Library
 Summary(pl.UTF-8):	Biblioteka audio/video GMerlin
 Name:		gavl
-Version:	0.2.4
-Release:	0.1
+Version:	0.2.7
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
-# Source0-md5:	ba7989a9344026827b34e797b0a58d87
+# Source0-md5:	a52fdbd94ed9432c956d269bc8893915
 Patch0:		%{name}-make.patch
-Patch1:		%{name}-non-x86.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,7 +48,6 @@ Statyczna biblioteka gavl.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -56,7 +55,10 @@ Statyczna biblioteka gavl.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--enable-shared \
+	--enable-static \
+	--with-cpuflags=none
 %{__make}
 
 %install
@@ -78,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/apiref
 %attr(755,root,root) %{_libdir}/libgavl.so
 %{_libdir}/libgavl.la
 %{_libdir}/gavl
