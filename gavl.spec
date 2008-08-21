@@ -1,20 +1,26 @@
+#
+# Conditional build:
+%bcond_without	apidocs	# without doc
+#
 Summary:	GMerlin Audio Video Library
 Summary(pl.UTF-8):	Biblioteka audio/video GMerlin
 Name:		gavl
-Version:	0.2.7
-Release:	2
+Version:	1.0.1
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
-# Source0-md5:	a52fdbd94ed9432c956d269bc8893915
+# Source0-md5:	7cb1037cec10f5a8a6a74d05e112169c
 Patch0:		%{name}-make.patch
-Patch1:		%{name}-pc.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fomit-frame-pointer -ffast-math
 
 %description
 GMerlin Audio Video Library.
@@ -49,7 +55,6 @@ Statyczna biblioteka gavl.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
 
 %build
 %{__libtoolize}
@@ -60,6 +65,7 @@ Statyczna biblioteka gavl.
 %configure \
 	--enable-shared \
 	--enable-static \
+	%{!?with_apidocs:--without-doxygen} \
 	--with-cpuflags=none
 %{__make}
 
@@ -68,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT%{_prefix}/share/doc/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -78,14 +85,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
+%ghost %attr(755,root,root) %{_libdir}/libgavl.so.0
 %attr(755,root,root) %{_libdir}/libgavl.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/apiref
+%{?with_apidocs:%doc doc/apiref}
 %attr(755,root,root) %{_libdir}/libgavl.so
 %{_libdir}/libgavl.la
-%{_libdir}/gavl
 %{_includedir}/gavl
 %{_pkgconfigdir}/gavl.pc
 
