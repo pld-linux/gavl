@@ -1,9 +1,0 @@
---- gavl.pc.in~	2003-03-15 18:41:41.000000000 +0100
-+++ gavl.pc.in	2008-04-13 19:26:53.940510705 +0200
-@@ -7,5 +7,5 @@
- Description: Gmerlin Audio Video Library
- Version: @VERSION@
- Libs: -L${libdir} -lgavl
--Cflags: -I${includedir} -I${exec_prefix}/lib/gavl/include/
-+Cflags: -I${includedir} -I${libdir}/gavl/include/
- 
