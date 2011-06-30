@@ -7,9 +7,9 @@ Summary(pl.UTF-8):	Biblioteka audio/video GMerlin
 Name:		gavl
 Version:	1.2.0
 Release:	1
-License:	GPL v3
+License:	GPL v2+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
 # Source0-md5:	f7dd25d3ef26a8d22f947e9383d251e7
 Patch0:		%{name}-make.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
@@ -63,7 +63,6 @@ Statyczna biblioteka gavl.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-shared \
 	--enable-static \
 	%{!?with_apidocs:--without-doxygen} \
 	--with-cpuflags=none
@@ -75,7 +74,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT{%{_libdir}/*.la,%{_prefix}/share/doc/%{name}}
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_prefix}/share/doc/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,8 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
-%attr(755,root,root) %ghost %{_libdir}/libgavl.so.?
 %attr(755,root,root) %{_libdir}/libgavl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgavl.so.1
 
 %files devel
 %defattr(644,root,root,755)
