@@ -1,0 +1,11 @@
+--- gavl-1.4.0/configure.ac.orig	2013-03-03 14:47:21.945882577 +0100
++++ gavl-1.4.0/configure.ac	2013-03-03 14:53:11.459201241 +0100
+@@ -2,7 +2,7 @@
+ 
+ AC_INIT(include/gavl/gavl.h)
+ 
+-AM_CONFIG_HEADER(include/gavl/config.h)
++AC_CONFIG_HEADERS(include/gavl/config.h)
+ 
+ AM_INIT_AUTOMAKE(gavl, 1.4.0)
+ 
