@@ -6,13 +6,14 @@ Summary:	GMerlin Audio Video Library
 Summary(pl.UTF-8):	Biblioteka audio/video GMerlin
 Name:		gavl
 Version:	1.4.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/gmerlin/%{name}-%{version}.tar.gz
 # Source0-md5:	2752013a817fbc43ddf13552215ec2c0
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-am.patch
+Patch2:		x32.patch
 URL:		http://gmerlin.sourceforge.net/gavl_frame.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -57,6 +58,7 @@ Statyczna biblioteka gavl.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
