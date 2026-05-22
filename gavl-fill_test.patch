@@ -1,0 +1,9 @@
+--- gavl-1.4.0/src/fill_test.c.orig	2011-01-01 00:00:00.000000000 +0000
++++ gavl-1.4.0/src/fill_test.c	2026-05-21 00:00:00.000000000 +0000
+@@ -20,6 +20,7 @@
+ #include <stdlib.h>
+ #include <gavl.h>
+ //#include "colorspace.h" // Common routines
++#include <string.h>
+ #include <stdio.h>
+ #include <png.h>
